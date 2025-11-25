@@ -9,7 +9,6 @@ const NyhederSchema = new mongoose.Schema({
   beskrivelse: {
     type: String,
     required: false,
-    default: null,
   },
   creationDate: {
         type: Date,

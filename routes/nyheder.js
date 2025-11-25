@@ -22,7 +22,7 @@ router.get('/nyheder/:id', async (req, res) => {
   try {
     const nyhed = await NyhederModel.findById(req.params.id);
     if (!nyhed) return res.status(404).json({ error: 'Nyhed ikke fundet' });
-    res.status(200).json(product);
+    res.status(200).json(nyhed);
   } catch (error) {
     res.status(500).json({ message: 'Fejl kunne ikke hente nyhed', error });
   }
@@ -39,15 +39,15 @@ router.post('/createNyhed', async (req, res) => {
     const savedNyhed = await newNyhed.save();
     res.status(201).json(savedNyhed);
   } catch (error) {
-    res.status(400).json({ message: 'Fejl kunne ikke oprette nyhed', error });
+    res.status(400).json({ error: 'Fejl kunne ikke oprette nyhed', error });
   }
 });
 
 router.put('/changeNyhed/:id', async (req, res) => {
   try {
     const updateFields = {
-      product: req.body.titel,
-      price: req.body.beskrivelse,
+      titel: req.body.titel,
+      beskrivelse: req.body.beskrivelse,
     };
 
     const updatedNyhed = await NyhederModel.findByIdAndUpdate(
