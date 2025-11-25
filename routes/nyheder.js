@@ -67,7 +67,7 @@ router.put('/changeNyhed/:id', async (req, res) => {
 router.delete('/deleteNyhed/:id', async (req, res) => {
   try {
     const deletedNyhed = await NyhederModel.findByIdAndDelete(req.params.id);
-    if (!deletedNyhed) return res.status(404).json({ message: 'Produkt ikke fundet' });
+    if (!deletedNyhed) return res.status(404).json({ message: 'Nyhed ikke fundet' });
     res.status(200).json({ message: 'Nyhed slettet' });
   } catch (error) {
     res.status(500).json({ message: 'Fejl kunne ikke slette nyheden', error });
