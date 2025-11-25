@@ -10,6 +10,10 @@ const NyhederSchema = new mongoose.Schema({
     type: String,
     required: false,
   },
+  image: {
+    type: String,
+    default: null,
+  },
   creationDate: {
         type: Date,
         default: Date.now

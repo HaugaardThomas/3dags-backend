@@ -4,6 +4,8 @@ const express = require('express');
 const cors = require('cors');
 const mongoose = require('mongoose');
 
+const fs = require('fs');
+
 // Routes Import
 const nyhederRouter = require('./routes/nyheder.js');
 
@@ -12,6 +14,7 @@ const nyhederRouter = require('./routes/nyheder.js');
 const app = express();
 
 // Middleware
+app.use('/uploads', express.static('uploads'));
 app.use(cors());
 
 app.use(express.json());

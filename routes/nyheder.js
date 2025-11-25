@@ -5,7 +5,8 @@ require('dotenv').config();
 const NyhederModel = require('../models/Nyheder.js');
 
 
-
+// Middleware
+const upload = require('../middleware/uploads.js')
 
 const router = express.Router()
 
@@ -28,12 +29,14 @@ router.get('/nyheder/:id', async (req, res) => {
   }
 });
 
-router.post('/createNyhed', async (req, res) => {
+router.post('/createNyhed', upload.single('image'), async (req, res) => {
   try {
+    const imagePath = req.file ? req.file.filename : null;
 
     const newNyhed = new NyhederModel({
       titel: req.body.titel,
-      beskrivelse: req.body.beskrivelse
+      beskrivelse: req.body.beskrivelse,
+      image: imagePath
     });
 
     const savedNyhed = await newNyhed.save();
