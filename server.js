@@ -9,6 +9,7 @@ const fs = require('fs');
 // Routes Import
 const nyhederRouter = require('./routes/nyheder.js');
 const galleriRouter = require('./routes/galleri.js');
+const userRouter = require('./routes/user.js');
 
 
 // Expres app
@@ -23,6 +24,7 @@ app.use(express.json());
 // Routes
 app.use('/nyheder', nyhederRouter);
 app.use('/galleri', galleriRouter);
+app.use('/user', userRouter);
 
 mongoose.connect(process.env.MONGO_URI)
 .then(() => {
